@@ -19,11 +19,7 @@ const theme = {
   lightred: "#FF8D8D",
   blue: "#00577D",
   lightblue: "#039ADA",
-  lightgreen: "#9DFF8D",
-  opacityblack: "rgba(29,27,27,51%)",
-  opacitygrey: "rgba(71,71,71,86%)",
-  navbarHeight: "11rem",
-  sidebarWidth: "35rem"
+  lightgreen: "#9DFF8D"
 };
 
 const StyledPage = styled.div`
