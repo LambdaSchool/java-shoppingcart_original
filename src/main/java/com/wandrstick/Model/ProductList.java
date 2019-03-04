@@ -2,6 +2,8 @@ package com.wandrstick.Model;
 
 import javax.persistence.*;
 
+/* Product List with name, description, price, quantity on hand.*/
+
 @Entity
 @Table(name="productList")
 public class ProductList {
