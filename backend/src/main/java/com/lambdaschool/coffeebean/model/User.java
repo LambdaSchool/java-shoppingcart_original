@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
+//@Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"username", "email"})})
 public class User
 {
 
