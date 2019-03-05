@@ -22,10 +22,11 @@ public class Orders {
 
     @ManyToOne()
     @JoinColumn(name = "customerId")
-    @JsonIgnoreProperties("customer")
+    @JsonIgnoreProperties("orders")
     private Customer customer;
 
     @ManyToMany(cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("orders")
     @JoinTable(name = "cart",
             joinColumns = {
                     @JoinColumn(name = "orderId"),
