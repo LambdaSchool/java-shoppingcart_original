@@ -10,6 +10,7 @@ public class PaymentMethods {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long method_id;
 
+    @Column(nullable = false)
     private String payment_method;
 
     @ManyToMany(cascade = CascadeType.ALL)

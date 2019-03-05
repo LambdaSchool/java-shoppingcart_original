@@ -5,6 +5,7 @@ import com.wandrstick.Repository.OrdersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,6 +20,10 @@ public class OrdersController {
    @GetMapping("/orders")
     public List<Orders> listAllOrders() {
        return ordersrepo.findAll();
+   }
+   @GetMapping("/{id}")
+    public Orders findOrderById(@PathVariable long id) {
+       return ordersrepo.findById(id).get();
    }
 
 }
