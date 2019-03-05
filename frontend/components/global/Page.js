@@ -7,7 +7,7 @@ import styled, {
 import Meta from "./Meta";
 
 const theme = {
-  black: "#2E2E2E",
+  black: "#393939",
   grey: "#E7E7E7",
   bordergrey: "#C8C8C8",
   darkgrey: "#525252",
