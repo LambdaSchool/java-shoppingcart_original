@@ -13,6 +13,7 @@ public class ProductController {
     @Autowired
     ProductRepository productrepos;
 
+    /* returns all the products with no filtering */
     @RequestMapping("/products")
     public List<Object[]> getAllProducts() {
         return productrepos.findAllProduct();
