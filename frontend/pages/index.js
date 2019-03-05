@@ -1,12 +1,23 @@
 import styled from "styled-components";
+import Router from "next/router";
 import { Button } from "antd";
+
 const Home = () => {
   return (
     <PageWrapper>
       <BackgroundImage src={"../static/jumbotron-image.jpg"} />
       <MainContent>
         <Title>Mean! Mean! Coffee Beans</Title>
-        <GetStartedBtn type="primary">Login / Signup</GetStartedBtn>
+        <GetStartedBtn
+          type="primary"
+          onClick={() => {
+            Router.push({
+              pathname: "/auth"
+            });
+          }}
+        >
+          Login / Signup
+        </GetStartedBtn>
       </MainContent>
     </PageWrapper>
   );
@@ -31,15 +42,17 @@ const GetStartedBtn = styled(Button)`
   background: ${props => props.theme.orange};
   color: ${props => props.theme.white};
   padding: 1em;
-  font-size: 3rem;
+  font-size: 2rem;
   border: none;
 `;
 const Title = styled.h1`
   color: ${props => props.theme.white};
   font-weight: 600;
   text-align: center;
-  width: 30rem;
+  width: 15rem;
+  font-size: 2rem;
   margin-bottom: 5rem;
+  line-height: 1.3;
 `;
 const BackgroundImage = styled.img`
   filter: brightness(70%);
