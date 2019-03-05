@@ -2,7 +2,6 @@ package com.wandrstick.Controller;
 
 import com.wandrstick.Model.Orders;
 import com.wandrstick.Repository.OrdersRepository;
-import org.hibernate.validator.constraints.URL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;

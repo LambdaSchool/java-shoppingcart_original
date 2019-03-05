@@ -14,36 +14,52 @@ import java.util.Set;
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long customerId;
-
-
+    private Long customer_id;
 
     private String firstName;
-
     private String middleName;
-
     private String lastName;
-    private String email;
+    private String emailAddress;
+    private String username;
     private String password;
-
-    private String billingAddress;
-    private String shippingAddress;
-    private String phoneNumber;
-    private String paymentMethod;
 
     @OneToMany(mappedBy = "customer")
     @JsonIgnoreProperties("customer")
-    private Set<Orders> orders = new HashSet<>();
+    private Set<Address> addresses = new HashSet<>();
+
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "customers")
+    @JsonIgnoreProperties("customers")
+    private Set<PaymentMethods> paymentMethods;
+
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "customers")
+    @JsonIgnoreProperties("customers")
+    private Set<Orders> orders;
 
     public Customer() {
     }
 
-    public long getCustomerId() {
-        return customerId;
+    public Set<PaymentMethods> getPaymentMethods() {
+        return paymentMethods;
     }
 
-    public void setCustomerId(long customerId) {
-        this.customerId = customerId;
+    public void setPaymentMethods(Set<PaymentMethods> paymentMethods) {
+        this.paymentMethods = paymentMethods;
+    }
+
+    public Set<Orders> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<Orders> orders) {
+        this.orders = orders;
+    }
+
+    public Long getCustomer_id() {
+        return customer_id;
+    }
+
+    public void setCustomer_id(Long customer_id) {
+        this.customer_id = customer_id;
     }
 
     public String getFirstName() {
@@ -70,12 +86,20 @@ public class Customer {
         this.lastName = lastName;
     }
 
-    public String getEmail() {
-        return email;
+    public String getEmailAddress() {
+        return emailAddress;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -86,43 +110,11 @@ public class Customer {
         this.password = password;
     }
 
-    public String getBillingAddress() {
-        return billingAddress;
+    public Set<Address> getAddresses() {
+        return addresses;
     }
 
-    public void setBillingAddress(String billingAddress) {
-        this.billingAddress = billingAddress;
-    }
-
-    public String getShippingAddress() {
-        return shippingAddress;
-    }
-
-    public void setShippingAddress(String shippingAddress) {
-        this.shippingAddress = shippingAddress;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getPaymentMethod() {
-        return paymentMethod;
-    }
-
-    public void setPaymentMethod(String paymentMethod) {
-        this.paymentMethod = paymentMethod;
-    }
-
-    public Set<Orders> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(Set<Orders> orders) {
-        this.orders = orders;
+    public void setAddresses(Set<Address> addresses) {
+        this.addresses = addresses;
     }
 }

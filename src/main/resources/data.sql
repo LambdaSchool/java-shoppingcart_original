@@ -1,26 +1,15 @@
-INSERT INTO customer (customer_id, first_name, middle_name, last_name, email, password, billing_address,shipping_address, phone_number, payment_method)
-        VALUES  (1,"Csaba", "MiddleName" ,"Balogh", "csababalogh84@gmail.com", "password123", "8014 Mango Ave Apt c30", "8014 Mango Ave Apt c30", "909-213-8702", "credit"),
-                (2,"Eszter", "" ,"MiddleName", "eszter@gmail.com", "password123", "8014 Mango Ave Apt c30", "1074 Budapest Also erdosor utca 20.", "3612228435", "credit");
+INSERT INTO Customer(customer_id, email_address, first_name,last_name, middle_name, password, username)
+            VALUES(1,"csababalogh84@gmail.com","Csaba","Balogh","", "password123","jasoncorp"),
+                  (2,"eszterbalogh@gmail.com","Eszter","Balogh","", "password123","secret123"),
+                  (3,"bilon@gmail.com","Ilona","Balogh","", "password123","ilonka"),
+                  (4,"peter@gmail.com","Peter","Balogh","", "password123","peterba"),
+                  (5,"bodza@gmail.com","Bodza","Balogh","", "password123","bodzolino");
 
-  INSERT INTO orders(order_id, product_name, order_quantity,shipping_address,payment_details,shipping_status,customer_id)
-        VALUE(1, "lipstick", 2, "8014 Mango Ave Aptc30", "credit", "processing", 1),
-              (2, "lipstick", 2, "9132 Sunset rd,Malibu Hill", "debit", "processing", 1),
-              (3, "lipstick", 2, "90210 Beverly Hills", "credit", "processing", 2),
-              (4, "lipstick", 2, "8014 Mango Ave Aptc30", "credit", "processing", 2),
-              (5, "lipstick", 2, "8014 Mango Ave Aptc30", "credit", "processing", 1);
+INSERT INTO address(address_id, city,street,zip,street_number,unit_number,customer_id)
+            VALUES (1, "Budapest", "Also Erdosor utca", "1074", "20","I/14", 1),
+                    (2, "Budapest", "Also Erdosor utca", "1074", "20","I/14", 2),
+                    (3, "Budapest", "Also Erdosor utca", "1074", "20","I/14", 3),
+                    (4, "Budapest", "Also Erdosor utca", "1074", "20","I/14", 4),
+                    (5, "Budapest", "Also Erdosor utca", "1074", "20","I/14", 5)
 
-INSERT INTO products(product_id, description, price, product_name, quantity_on_hand)
-        VALUE (1, "extra hydrating super healthy", 45.00, "organic goodies", 103),
-        (2, "extra hydrating super healthy", 45.00, "organic goodies", 103),
-        (3, "brutal chainsaw", 119.00, "organic chainsaw", 10),
-        (4, "sharp axe", 90.00, "cutting edgge technology", 82),
-        (5, "apple pen", 150.00, "apple_pen", 13);
-
-INSERT INTO cart(order_id, product_id)
-      VALUE(1,1),
-            (2,1),
-            (3,2),
-            (4,2),
-            (5,1);
-      ;
-
+INSERT INTO 

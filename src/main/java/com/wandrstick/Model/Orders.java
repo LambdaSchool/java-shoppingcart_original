@@ -12,90 +12,37 @@ import java.util.Set;
 public class Orders {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long orderId;
+    private Long order_id;
 
-    private String productName;
-    private int orderQuantity;
-    private String shippingAddress;
-    private String paymentDetails;
-    private String shippingStatus;
+    private Long order_quantity;
 
-    @ManyToOne()
-    @JoinColumn(name = "customerId")
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "orders")
     @JsonIgnoreProperties("orders")
-    private Customer customer;
-
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JsonIgnoreProperties("orders")
-    @JoinTable(name = "cart",
-            joinColumns = {
-                    @JoinColumn(name = "orderId"),
-            },
-            inverseJoinColumns = {
-                    @JoinColumn(name = "productId"),
-            }
-                    )
     private Set<Products> products;
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "customer_orders",
+            joinColumns = {@JoinColumn(name = "order_id")},
+            inverseJoinColumns = {@JoinColumn(name = "customer_id")})
+    private Set<Customer> customers;
 
     public Orders() {
     }
 
-
-    public Long getOrderId() {
-        return orderId;
+    public Long getOrder_id() {
+        return order_id;
     }
 
-    public void setOrderId(Long orderId) {
-        this.orderId = orderId;
+    public void setOrder_id(Long order_id) {
+        this.order_id = order_id;
     }
 
-    public String getProductName() {
-        return productName;
+    public Long getOrder_quantity() {
+        return order_quantity;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-    public int getOrderQuantity() {
-        return orderQuantity;
-    }
-
-    public void setOrderQuantity(int orderQuantity) {
-        this.orderQuantity = orderQuantity;
-    }
-
-    public String getShippingAddress() {
-        return shippingAddress;
-    }
-
-    public void setShippingAddress(String shippingAddress) {
-        this.shippingAddress = shippingAddress;
-    }
-
-    public String getPaymentDetails() {
-        return paymentDetails;
-    }
-
-    public void setPaymentDetails(String paymentDetails) {
-        this.paymentDetails = paymentDetails;
-    }
-
-    public String getShippingStatus() {
-        return shippingStatus;
-    }
-
-    public void setShippingStatus(String shippingStatus) {
-        this.shippingStatus = shippingStatus;
-    }
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setOrder_quantity(Long order_quantity) {
+        this.order_quantity = order_quantity;
     }
 
     public Set<Products> getProducts() {
@@ -104,5 +51,13 @@ public class Orders {
 
     public void setProducts(Set<Products> products) {
         this.products = products;
+    }
+
+    public Set<Customer> getCustomers() {
+        return customers;
+    }
+
+    public void setCustomers(Set<Customer> customers) {
+        this.customers = customers;
     }
 }

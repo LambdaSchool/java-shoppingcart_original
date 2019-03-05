@@ -1,6 +1,5 @@
 package com.wandrstick.Model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -12,26 +11,29 @@ import java.util.Set;
 public class Products {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long productId;
+    private Long product_id;
 
     private String productName;
     private String description;
     private Float price;
     private Long quantityOnHand;
 
-    @ManyToMany(mappedBy = "products")
-    @JsonIgnoreProperties("products")
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "order_products",
+            joinColumns = {@JoinColumn(name = "product_id")},
+            inverseJoinColumns = {@JoinColumn(name = "order_id")})
     private Set<Orders> orders;
+
 
     public Products() {
     }
 
-    public long getProductId() {
-        return productId;
+    public Long getProductId() {
+        return product_id;
     }
 
-    public void setProductId(long productId) {
-        this.productId = productId;
+    public void setProductId(Long product_id) {
+        this.product_id = product_id;
     }
 
     public String getProductName() {
@@ -50,19 +52,19 @@ public class Products {
         this.description = description;
     }
 
-    public float getPrice() {
+    public Float getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(Float price) {
         this.price = price;
     }
 
-    public long getQuantityOnHand() {
+    public Long getQuantityOnHand() {
         return quantityOnHand;
     }
 
-    public void setQuantityOnHand(long quantityOnHand) {
+    public void setQuantityOnHand(Long quantityOnHand) {
         this.quantityOnHand = quantityOnHand;
     }
 
