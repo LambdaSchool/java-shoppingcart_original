@@ -3,6 +3,7 @@ package com.lambdaschool.coffeebean.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -17,18 +18,24 @@ public class Order
 
     private String paymentdetails;
 
+    //yyyy-mm-dd HH:MM:SS
+    private Date shipdatetime;
+
     private boolean shippedstatus;
 
     //*** ManyToOne with user ***
     @ManyToOne
     @JoinColumn(name = "userid")
-    @JsonIgnoreProperties("orders")
+    @JsonIgnoreProperties({"productsincart", "orderhistory", "totalorderhistory"})
     private User user;
 
-    // *** OneToMany with product ***
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
-    @JsonIgnoreProperties("order")
-    private Set<Product> productsinorder;
+    // *** ManyToMany with product - orderproducts - owner ***
+    @ManyToMany
+    @JoinTable(name = "orderproducts",
+        joinColumns = {@JoinColumn(name = "orderid")},
+        inverseJoinColumns = {@JoinColumn(name = "productid")})
+    @JsonIgnoreProperties({"potentialusers", "productorders", "productusers", "suppliers"})
+    private Set<Product> orderproducts;
 
     public Order()
     {
@@ -84,13 +91,23 @@ public class Order
         this.user = user;
     }
 
-    public Set<Product> getProductsinorder()
+    public Set<Product> getOrderproducts()
     {
-        return productsinorder;
+        return orderproducts;
     }
 
-    public void setProductsinorder(Set<Product> productsinorder)
+    public void setOrderproducts(Set<Product> orderproducts)
     {
-        this.productsinorder = productsinorder;
+        this.orderproducts = orderproducts;
+    }
+
+    public Date getShipdatetime()
+    {
+        return shipdatetime;
+    }
+
+    public void setShipdatetime(Date shipdatetime)
+    {
+        this.shipdatetime = shipdatetime;
     }
 }

@@ -18,7 +18,7 @@ public class User
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long userid;
 
-//    @Column(unique = true)
+    @Column(length = 250, unique = true)
     private String username;
 
     @JsonIgnore
@@ -28,39 +28,48 @@ public class User
 
     // ==================================================================
 
+//    @JsonIgnore
     private String customername;
 
+//    @JsonIgnore
     private String billingaddress;
 
+//    @JsonIgnore
     private String shippingaddress;
 
+//    @JsonIgnore
     private  String customerphone;
 
-//    @Column(unique = true)
+//    @JsonIgnore
+    @Column(length = 250, unique = true)
     private String email;
 
+//    @JsonIgnore
     private String paymentmethod;
 
     // *** OneToMany with Order ***
+//    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    @JsonIgnoreProperties("user")
-    private Set<Order> orders;
+    @JsonIgnoreProperties({"user", "orderproducts"})
+    private Set<Order> orderhistory;
 
     //*** ManyToMany with Product - cart - owner of table ***
+//    @JsonIgnore
     @ManyToMany
     @JoinTable(name = "cart",
             joinColumns = {@JoinColumn(name = "userid")},
             inverseJoinColumns = {@JoinColumn(name = "productid")})
-    @JsonIgnoreProperties("potentialusers")
+    @JsonIgnoreProperties({"potentialusers", "productorders", "productusers", "suppliers"})
     private Set<Product> productsincart;
 
 
     //*** ManyToMany with Product - totalorderhistory - owner of table ***
+//    @JsonIgnore
     @ManyToMany
     @JoinTable(name = "totalorderhistory",
             joinColumns = {@JoinColumn(name = "userid")},
             inverseJoinColumns = {@JoinColumn(name = "productid")})
-    @JsonIgnoreProperties("productusers")
+    @JsonIgnoreProperties({"potentialusers", "productorders", "productusers", "suppliers"})
     private Set<Product> totalorderhistory;
 
     // ================================================================
@@ -177,14 +186,14 @@ public class User
         this.paymentmethod = paymentmethod;
     }
 
-    public Set<Order> getOrders()
+    public Set<Order> getOrderhistory()
     {
-        return orders;
+        return orderhistory;
     }
 
-    public void setOrders(Set<Order> orders)
+    public void setOrderhistory(Set<Order> orderhistory)
     {
-        this.orders = orders;
+        this.orderhistory = orderhistory;
     }
 
     public Set<Product> getProductsincart()

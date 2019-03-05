@@ -3,7 +3,7 @@ package com.lambdaschool.coffeebean.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
 import java.util.Set;
 
 @Entity
@@ -22,27 +22,32 @@ public class Product
 
     private int quantity;
 
-    private Date expiration;
+
+    //MySQL uses yyyy-mm-dd format for storing a date value
+    // Not sure how to do date yet
+    private java.sql.Date expiration;
 
     private String image;
 
-    // *** ManyToOne with order ***
-    @ManyToOne
-    @JoinColumn(name = "orderid")
-    @JsonIgnoreProperties("productsinorder")
-    private Order order;
+    // *** ManyToMany with order - orderproducts - subowner***
+    @ManyToMany(mappedBy = "orderproducts", fetch = FetchType.EAGER)
+    @JsonIgnoreProperties({"orderproducts", "user"})
+    private Set<Order> productorders;
 
-    // *** ManyToMany with customer - cart - subowner ***
+    // *** ManyToMany with user - cart - subowner ***
+//    @JsonIgnore
     @ManyToMany(mappedBy = "productsincart", fetch = FetchType.EAGER)
-    @JsonIgnoreProperties("productsincart")
+    @JsonIgnoreProperties({"productsincart", "orderhistory", "totalorderhistory"})
     private Set<User> potentialusers;
 
-    // *** ManyToMany with customer - orderhistory - subowner ***
+    // *** ManyToMany with user - orderhistory - subowner ***
+//    @JsonIgnore
     @ManyToMany(mappedBy = "totalorderhistory", fetch = FetchType.EAGER)
-    @JsonIgnoreProperties("totalorderhistory")
+    @JsonIgnoreProperties({"productsincart", "orderhistory", "totalorderhistory"})
     private Set<User> productusers;
 
     // *** ManyToMany with supplier - subowner ***
+//    @JsonIgnore
     @ManyToMany(mappedBy = "productsfromsupplier", fetch = FetchType.EAGER)
     @JsonIgnoreProperties("productsfromsupplier")
     private Set<Supplier> suppliers;
@@ -121,14 +126,14 @@ public class Product
         this.expiration = expiration;
     }
 
-    public Order getOrder()
+    public Set<Order> getProductorders()
     {
-        return order;
+        return productorders;
     }
 
-    public void setOrder(Order order)
+    public void setProductorders(Set<Order> productorders)
     {
-        this.order = order;
+        this.productorders = productorders;
     }
 
     public Set<User> getPotentialusers()

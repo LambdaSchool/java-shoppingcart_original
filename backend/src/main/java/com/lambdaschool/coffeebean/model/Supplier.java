@@ -22,7 +22,7 @@ public class Supplier
     @JoinTable(name = "supplierproduct",
         joinColumns = {@JoinColumn(name = "supplierid")},
         inverseJoinColumns = {@JoinColumn(name = "productid")})
-    @JsonIgnoreProperties("suppliers")
+    @JsonIgnoreProperties({"potentialusers", "productorders", "productusers", "suppliers"})
     private Set<Product> productsfromsupplier;
 
     public Supplier()
