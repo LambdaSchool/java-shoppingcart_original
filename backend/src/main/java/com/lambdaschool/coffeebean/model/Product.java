@@ -3,6 +3,7 @@ package com.lambdaschool.coffeebean.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -21,6 +22,8 @@ public class Product
 
     private int quantity;
 
+    private Date expiration;
+
     private String image;
 
     // *** ManyToOne with order ***
@@ -30,17 +33,17 @@ public class Product
     private Order order;
 
     // *** ManyToMany with customer - cart - subowner ***
-    @ManyToMany(mappedBy = "productsincart")
+    @ManyToMany(mappedBy = "productsincart", fetch = FetchType.EAGER)
     @JsonIgnoreProperties("productsincart")
-    private Set<Customer> potentialcustomers;
+    private Set<User> potentialusers;
 
     // *** ManyToMany with customer - orderhistory - subowner ***
-    @ManyToMany(mappedBy = "orderhistory")
-    @JsonIgnoreProperties("orderhistory")
-    private Set<Customer> productcustomers;
+    @ManyToMany(mappedBy = "totalorderhistory", fetch = FetchType.EAGER)
+    @JsonIgnoreProperties("totalorderhistory")
+    private Set<User> productusers;
 
     // *** ManyToMany with supplier - subowner ***
-    @ManyToMany(mappedBy = "productsfromsupplier")
+    @ManyToMany(mappedBy = "productsfromsupplier", fetch = FetchType.EAGER)
     @JsonIgnoreProperties("productsfromsupplier")
     private Set<Supplier> suppliers;
 
@@ -108,6 +111,16 @@ public class Product
         this.image = image;
     }
 
+    public Date getExpiration()
+    {
+        return expiration;
+    }
+
+    public void setExpiration(Date expiration)
+    {
+        this.expiration = expiration;
+    }
+
     public Order getOrder()
     {
         return order;
@@ -118,24 +131,24 @@ public class Product
         this.order = order;
     }
 
-    public Set<Customer> getPotentialcustomers()
+    public Set<User> getPotentialusers()
     {
-        return potentialcustomers;
+        return potentialusers;
     }
 
-    public void setPotentialcustomers(Set<Customer> potentialcustomers)
+    public void setPotentialusers(Set<User> potentialusers)
     {
-        this.potentialcustomers = potentialcustomers;
+        this.potentialusers = potentialusers;
     }
 
-    public Set<Customer> getProductcustomers()
+    public Set<User> getProductusers()
     {
-        return productcustomers;
+        return productusers;
     }
 
-    public void setProductcustomers(Set<Customer> productcustomers)
+    public void setProductusers(Set<User> productusers)
     {
-        this.productcustomers = productcustomers;
+        this.productusers = productusers;
     }
 
     public Set<Supplier> getSuppliers()

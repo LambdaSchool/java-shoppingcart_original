@@ -3,7 +3,6 @@ package com.lambdaschool.coffeebean.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -20,13 +19,11 @@ public class Order
 
     private boolean shippedstatus;
 
-    private List<Product> itemsinorder;
-
-    //*** ManyToOne with customer ***
+    //*** ManyToOne with user ***
     @ManyToOne
-    @JoinColumn(name = "customerid")
+    @JoinColumn(name = "userid")
     @JsonIgnoreProperties("orders")
-    private Customer customer;
+    private User user;
 
     // *** OneToMany with product ***
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
@@ -77,24 +74,14 @@ public class Order
         this.shippedstatus = shippedstatus;
     }
 
-    public List<Product> getItemsinorder()
+    public User getUser()
     {
-        return itemsinorder;
+        return user;
     }
 
-    public void setItemsinorder(List<Product> itemsinorder)
+    public void setUser(User user)
     {
-        this.itemsinorder = itemsinorder;
-    }
-
-    public Customer getCustomer()
-    {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer)
-    {
-        this.customer = customer;
+        this.user = user;
     }
 
     public Set<Product> getProductsinorder()
