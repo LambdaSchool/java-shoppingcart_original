@@ -3,6 +3,7 @@ package com.lambdaschool.coffeebean.controller;
 import com.lambdaschool.coffeebean.model.User;
 import com.lambdaschool.coffeebean.repository.Userrepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.net.URISyntaxException;
 
 @RestController
-@RequestMapping("/signup")
+@RequestMapping(value = "/signup", produces = MediaType.APPLICATION_JSON_VALUE)
 public class Signupcontroller
 {
 
@@ -36,6 +37,8 @@ public class Signupcontroller
         }
         else
         {
+            // set role to user for security concern.  Just in case a new user wants to set their own role to admin.
+            newuser.setRole("user");
             return userrepos.save(newuser);
         }
     }

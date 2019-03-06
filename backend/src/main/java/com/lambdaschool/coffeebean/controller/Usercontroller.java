@@ -3,13 +3,14 @@ package com.lambdaschool.coffeebean.controller;
 import com.lambdaschool.coffeebean.model.User;
 import com.lambdaschool.coffeebean.repository.Userrepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URISyntaxException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping(value = "/users", produces = MediaType.APPLICATION_JSON_VALUE)
 public class Usercontroller
 {
 
@@ -24,12 +25,12 @@ public class Usercontroller
     }
 
     @GetMapping("/{userid}/cart")
-    public Object getItemsInCart(@PathVariable long userid)
+    public List<Object> getItemsInCart(@PathVariable long userid)
     {
         return userrepos.getItemsInCartById(userid);
     }
 
-    @PostMapping("")
+    @PostMapping("/addadmin")
     public Object addNewUser(@RequestBody User newuser) throws URISyntaxException
     {
 //        return userrepos.save(newuser);
@@ -47,6 +48,7 @@ public class Usercontroller
         }
         else
         {
+            newuser.setRole("admin");
             return userrepos.save(newuser);
         }
     }
