@@ -6,9 +6,9 @@
 -- ADD UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE,
 -- ADD UNIQUE INDEX `username_UNIQUE` (`username` ASC) VISIBLE;
 
-INSERT INTO orders (orderid, paymentdetails, shipdatetime, shippedstatus, shippingaddress, userid) VALUES (1, 'Mastercard1', '2019-01-20 20:50:50', true, 'string address1', 1);
-INSERT INTO orders (orderid, paymentdetails, shipdatetime, shippedstatus, shippingaddress, userid) VALUES (2, 'Mastercard2', '2019-01-20 20:50:50', false, 'string address1', 2);
-INSERT INTO orders (orderid, paymentdetails, shipdatetime, shippedstatus, shippingaddress, userid) VALUES (3, 'Mastercard3', '2019-01-20 20:50:50', true, 'string address1', 2);
+INSERT INTO orders (orderid, paymentdetails, shipdatetime, shippedstatus, shippingaddress, userid) VALUES (1, 'Mastercard1', '2019-01-20 20:50:50', true, 'string address1', 3);
+INSERT INTO orders (orderid, paymentdetails, shipdatetime, shippedstatus, shippingaddress, userid) VALUES (2, 'Mastercard2', '2019-01-20 20:50:50', false, 'string address1', 3);
+INSERT INTO orders (orderid, paymentdetails, shipdatetime, shippedstatus, shippingaddress, userid) VALUES (3, 'Mastercard3', '2019-01-20 20:50:50', true, 'string address1', 4);
 INSERT INTO orders (orderid, paymentdetails, shipdatetime, shippedstatus, shippingaddress, userid) VALUES (4, 'Mastercard4', '2019-01-20 20:50:50', false, 'string address1', 3);
 INSERT INTO orders (orderid, paymentdetails, shipdatetime, shippedstatus, shippingaddress, userid) VALUES (5, 'Mastercard5', '2019-01-20 20:50:50', true, 'string address1', 3);
 INSERT INTO orders (orderid, paymentdetails, shipdatetime, shippedstatus, shippingaddress, userid) VALUES (6, 'Mastercard6', '2019-01-20 20:50:50', false, 'string address1', 4);
