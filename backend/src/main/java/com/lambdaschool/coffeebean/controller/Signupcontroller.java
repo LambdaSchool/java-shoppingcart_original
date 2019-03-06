@@ -3,30 +3,25 @@ package com.lambdaschool.coffeebean.controller;
 import com.lambdaschool.coffeebean.model.User;
 import com.lambdaschool.coffeebean.repository.Userrepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.net.URISyntaxException;
-import java.util.List;
 
 @RestController
-@RequestMapping("/users")
-public class Usercontroller
+@RequestMapping("/signup")
+public class Signupcontroller
 {
 
     @Autowired
     // private UserService userService;
     private Userrepository userrepos;
 
-    @GetMapping("")
-    public List<User> listAllUsers()
-    {
-        return userrepos.findAll();
-    }
-
     @PostMapping("")
     public Object addNewUser(@RequestBody User newuser) throws URISyntaxException
     {
-//        return userrepos.save(newuser);
         if (userrepos.findByUsername(newuser.getUsername()) != null)
         {
             if (newuser.getEmail() != null & userrepos.findByEmail(newuser.getEmail()) != null)
@@ -42,24 +37,6 @@ public class Usercontroller
         else
         {
             return userrepos.save(newuser);
-        }
-    }
-
-    @DeleteMapping("/{id}")
-    public String deleteUserById(@PathVariable long id)
-    {
-        var foundUser = userrepos.findById(id);
-        if (foundUser.isPresent())
-        {
-            userrepos.deleteById(id);
-
-            return "{" + "\"userid\":"   + foundUser.get().getUserid() +
-                    ",\"usename\":" + "\"" + foundUser.get().getUsername() + "\"" +
-                    ",\"role\":" + foundUser.get().getAuthority() + "}";
-        }
-        else
-        {
-            return null;
         }
     }
 
