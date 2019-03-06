@@ -65,3 +65,6 @@ INSERT INTO payment_methods(method_id, payment_method)
                   (2, "debit"),
                   (3, "paypal"),
                   (4, "stripe");
+
+INSERT INTO roles(name) VALUES('ROLE_USER');
+INSERT INTO roles(name) VALUES('ROLE_ADMIN');
