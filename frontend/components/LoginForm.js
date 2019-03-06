@@ -19,13 +19,23 @@ const SignUpForm = ({ form, theme }) => {
         title="Login"
         headStyle={{ background: theme.black, color: theme.white }}
       >
-        <Form.Item label="Email">
+        {/* <Form.Item label="Email">
           {getFieldDecorator("email", {
             rules: [{ required: true, message: "Please input an email!" }]
           })(
             <Input
               prefix={<Icon type="mail" style={{ color: "rgba(0,0,0,.25)" }} />}
               placeholder="Email"
+            />
+          )}
+        </Form.Item> */}
+        <Form.Item label="Username">
+          {getFieldDecorator("username", {
+            rules: [{ required: true, message: "Please input a username!" }]
+          })(
+            <Input
+              prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
+              placeholder="Username"
             />
           )}
         </Form.Item>
