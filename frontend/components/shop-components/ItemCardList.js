@@ -12,7 +12,6 @@ const ItemCardList = () => {
 const ItemsWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  position: relative;
   width: 100%;
   z-index: -1;
   margin: 100px 0 0 0;

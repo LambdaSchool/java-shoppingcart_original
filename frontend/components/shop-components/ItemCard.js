@@ -1,4 +1,4 @@
-import styled, { withTheme } from "styled-components";
+import styled from "styled-components";
 import { Card, Button } from "antd";
 
 const ItemCard = ({ title, description, price }) => {
@@ -25,7 +25,7 @@ const StyledCard = styled.div`
 const ItemTextContainer = styled.div`
   width: 100%;
   height: 100%;
-  padding-left: 24px;
+  padding-left: 14px;
 `;
 
 const ItemTitle = styled.h2`
@@ -35,10 +35,11 @@ const ItemTitle = styled.h2`
 const ItemDescription = styled.p`
   font-size: 1.2rem;
   margin-top: 0;
+  line-height: 1.3;
 `;
 const ItemImage = styled.img`
   height: 100%;
   width: 35%;
 `;
 const BuyBtn = styled(Button)``;
-export default withTheme(ItemCard);
+export default ItemCard;

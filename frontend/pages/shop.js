@@ -15,7 +15,7 @@ const ShopPage = () => {
   );
 };
 const MainContent = styled.main`
-  padding: 1em;
+  padding: 0.5em;
 `;
 const ShopWrapper = styled.div``;
 export default ShopPage;
