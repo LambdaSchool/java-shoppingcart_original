@@ -15,8 +15,9 @@ public class UserController {
     @Autowired
     CustomerRepository custrepos;
 
+    @Autowired
     @GetMapping("/customer")
-    public List<Object[]> listAllCustomer() {
-        return custrepos.allUser();
+    public List<Customer> listAllCustomer() {
+        return custrepos.findAll();
     }
 }

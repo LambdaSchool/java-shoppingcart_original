@@ -1,6 +1,8 @@
 package com.wandrstick.Model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -8,6 +10,8 @@ import java.util.Set;
 
 @Entity
 @Table(name="products")
+@JsonIgnoreProperties("orders")
+
 public class Products {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,5 +1,6 @@
 package com.wandrstick.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -8,6 +9,7 @@ import java.util.Set;
  */
 
 @Entity
+@JsonIgnoreProperties({"orders"})
 @Table(name = "orders")
 public class Orders {
     @Id
@@ -21,6 +23,7 @@ public class Orders {
     private Set<Products> products;
 
     @ManyToMany(cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("customers")
     @JoinTable(name = "customer_orders",
             joinColumns = {@JoinColumn(name = "order_id")},
             inverseJoinColumns = {@JoinColumn(name = "customer_id")})

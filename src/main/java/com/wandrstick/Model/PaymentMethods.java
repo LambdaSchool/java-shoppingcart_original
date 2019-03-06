@@ -1,5 +1,8 @@
 package com.wandrstick.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -13,6 +16,7 @@ public class PaymentMethods {
     @Column(nullable = false)
     private String payment_method;
 
+    @JsonIgnore
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "customer_payment_methods",
             joinColumns = {@JoinColumn(name = "method_id")},

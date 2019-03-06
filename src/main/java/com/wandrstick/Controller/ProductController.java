@@ -15,7 +15,7 @@ public class ProductController {
 
     /* returns all the products with no filtering */
     @RequestMapping("/products")
-    public List<Object[]> getAllProducts() {
-        return productrepos.findAllProduct();
+    public List<Products> getAllProducts() {
+        return productrepos.findAll();
     }
 }
