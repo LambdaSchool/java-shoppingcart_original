@@ -23,6 +23,12 @@ public class Usercontroller
         return userrepos.findAll();
     }
 
+    @GetMapping("/{userid}/cart")
+    public Object getItemsInCart(@PathVariable long userid)
+    {
+        return userrepos.getItemsInCartById(userid);
+    }
+
     @PostMapping("")
     public Object addNewUser(@RequestBody User newuser) throws URISyntaxException
     {
