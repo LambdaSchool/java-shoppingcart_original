@@ -42,7 +42,7 @@ public class Usercontroller
             }
             return "{username unique constraint : " + newuser.getUsername() + " already exists}";
         }
-        else if (userrepos.findByEmail(newuser.getEmail()) != null)
+        else if (userrepos.findByEmail(newuser.getEmail()) != null & newuser.getEmail() != null)
         {
             return "{ email unique constraint : " + newuser.getEmail() + " already exists }";
         }
