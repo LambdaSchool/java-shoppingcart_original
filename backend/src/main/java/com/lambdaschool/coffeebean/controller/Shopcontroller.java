@@ -1,5 +1,6 @@
 package com.lambdaschool.coffeebean.controller;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.lambdaschool.coffeebean.model.Product;
 import com.lambdaschool.coffeebean.repository.Productrepository;
 import io.swagger.annotations.Api;
@@ -9,6 +10,7 @@ import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,6 +24,7 @@ public class Shopcontroller
     @Autowired
     Productrepository productrepos;
 
+    @JsonView(View.UserOnly.class)
     @ApiOperation(value = "find all products - DKM", response = Product.class)
     @ApiResponses(value =
             {
@@ -34,5 +37,13 @@ public class Shopcontroller
     public List<Product> getAllProducts()
     {
         return productrepos.findAll();
+    }
+
+    @JsonView(View.UserOnly.class)
+    @GetMapping("/{page}")
+    public List<Product> get10Products(@PathVariable int page)
+    {
+        int start = (page -1) * 10;
+        return productrepos.get10Products(start);
     }
 }
