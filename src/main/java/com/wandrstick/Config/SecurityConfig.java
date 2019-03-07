@@ -1,6 +1,9 @@
 package com.wandrstick.Config;
 
 
+import com.wandrstick.Security.CustomUserDetailsService;
+import com.wandrstick.Security.JwtAuthenticationEntryPoint;
+import com.wandrstick.Security.JwtAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
