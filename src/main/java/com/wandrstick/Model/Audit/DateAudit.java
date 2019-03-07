@@ -17,6 +17,7 @@ import java.time.Instant;
         allowGetters = true
 )
 public abstract class DateAudit implements Serializable {
+
     @CreatedDate
     private Instant createdAt;
 
@@ -38,4 +39,5 @@ public abstract class DateAudit implements Serializable {
     public void setUpdatedAt(Instant updatedAt) {
         this.updatedAt = updatedAt;
     }
+
 }

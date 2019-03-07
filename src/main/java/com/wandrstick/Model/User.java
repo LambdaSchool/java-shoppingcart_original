@@ -51,16 +51,16 @@ public class User extends DateAudit {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
-//    @OneToMany(mappedBy = "users")
-//    @JsonIgnoreProperties({"users"})
-//    private Set<Address> addresses = new HashSet<>();
+    @OneToMany(mappedBy = "user")
+    @JsonIgnoreProperties({"users"})
+    private Set<Address> addresses = new HashSet<>();
 
-//    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "users")
-//    private Set<PaymentMethods> paymentMethods;
+//    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "user")
+//    private Set<PaymentMethods> paymentMethods = new HashSet<>();
 
-//    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "users")
-//    @JsonIgnoreProperties("users")
-//    private Set<Orders> orders;
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "users")
+    @JsonIgnoreProperties("users")
+    private Set<Orders> orders;
 
     public User() {
 

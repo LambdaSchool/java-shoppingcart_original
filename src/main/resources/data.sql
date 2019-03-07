@@ -13,14 +13,14 @@ INSERT IGNORE INTO roles(name) VALUES('ROLE_ADMIN');
 --                   (3,3),
 --                   (4,4),
 --                   (5,5);
---
+-- --
 -- INSERT INTO customer_payment_methods(method_id, customer_id)
 --             VALUES (1,1),
 --                     (2,1),
 --                     (1,2),
 --                     (3,3),
 --                     (4,4);
---
+-- --
 -- INSERT INTO order_products(product_id, order_id)
 --             VALUES(1,2),
 --                   (2,1),
@@ -29,14 +29,14 @@ INSERT IGNORE INTO roles(name) VALUES('ROLE_ADMIN');
 --                   (5,3),
 --                   (6,5),
 --                   (7,6);
---
+-- --
 -- INSERT INTO address(address_id, city,street,zip,street_number,unit_number,customer_id)
 --             VALUES (1, "Budapest", "Also Erdosor utca", "1074", "20","I/14", 1),
 --                     (2, "Budapest", "Also Erdosor utca", "1074", "20","I/14", 2),
 --                     (3, "Budapest", "Also Erdosor utca", "1074", "20","I/14", 3),
 --                     (4, "Budapest", "Also Erdosor utca", "1074", "20","I/14", 4),
 --                     (5, "Budapest", "Also Erdosor utca", "1074", "20","I/14", 5);
---
+-- --
 -- INSERT INTO products(product_id, description, price, product_name,quantity_on_hand)
 --             VALUES (1, "great axe, that cuts everything", 45.00, "great axe", 15),
 --                     (2, "luxury car", 67000.00, "mercedes benz amg", 3),
@@ -45,15 +45,15 @@ INSERT IGNORE INTO roles(name) VALUES('ROLE_ADMIN');
 --                     (5, "Samurai sword", 1200.00, "Hagasaky Nakahi", 1),
 --                     (6, "Even greater axe, that really cuts everything", 55.00, "greater axe", 10),
 --                     (7, "AR Helmet", 200.00, "Random Brand", 3);
---
---
+-- -- --
+-- --
 -- INSERT INTO Orders(order_id, order_quantity)
 --             VALUES (1,3),
 --                     (2,1),
 --                     (3,4),
 --                     (4,5),
 --                     (5,9);
---
+-- -- --
 -- INSERT INTO order_products(product_id, order_id)
 --             VALUES(1,1),
 --                   (2,2),

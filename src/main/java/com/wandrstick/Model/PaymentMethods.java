@@ -15,11 +15,10 @@ public class PaymentMethods {
     @Column(nullable = false)
     private String payment_method;
 
-    @JsonIgnore
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "customer_payment_methods",
             joinColumns = {@JoinColumn(name = "method_id")},
-            inverseJoinColumns = {@JoinColumn(name = "customer_id")})
+            inverseJoinColumns = {@JoinColumn(name = "id")})
     private Set<User> users;
 
     public PaymentMethods() {

@@ -1,6 +1,7 @@
 package com.wandrstick.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.wandrstick.Model.Audit.UserDateAudit;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -10,12 +11,14 @@ import java.util.Set;
 @Entity
 @JsonIgnoreProperties({"orders"})
 @Table(name = "orders")
-public class Orders {
+public class Orders extends UserDateAudit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long order_id;
 
     private Long order_quantity;
+
+    private boolean pending;
 
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "orders")
     @JsonIgnoreProperties("orders")
