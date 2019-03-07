@@ -2,14 +2,22 @@ package com.wandrstick.Repository;
 
 import com.wandrstick.Model.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+@Repository
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
-    @Query(value = "SELECT * FROM customer", nativeQuery = true)
-    List<Object[]> allUser();
+    Optional<Customer> findByEmail(String email);
 
-    Customer findByUsername(String username);
+    Optional<Customer> findByUsernameOrEmail(String username, String email);
+
+    List<Customer> findByIdIn(List<Long> userIds);
+
+    Optional<Customer> findByUsername(String username);
+
+    Boolean existsByUsername(String username);
+
+    Boolean existsByEmail(String email);
 }

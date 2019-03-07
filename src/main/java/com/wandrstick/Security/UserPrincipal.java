@@ -10,7 +10,11 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-
+/*
+Next, Let’s define our custom UserDetails class called UserPrincipal. This is the class whose instances
+will be returned from our custom UserDetailsService. Spring Security will use the information stored in
+the UserPrincipal object to perform authentication and authorization.
+* */
 
 public class UserPrincipal implements UserDetails {
     private Long id;
