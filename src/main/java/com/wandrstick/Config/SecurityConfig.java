@@ -97,13 +97,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticated();
 
         // Add our custom JWT security filter
-        /*reads JWT authentication token from the Authorization header of all the requests
-        validates the token
-        loads the user details associated with that token.
-        Sets the user details in Spring Security’s SecurityContext.
-        Spring Security uses the user details to perform authorization checks.
-        We can also access the user details stored in the SecurityContext in our
-        controllers to perform our business logic.*/
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 
     }

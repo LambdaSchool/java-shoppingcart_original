@@ -33,7 +33,7 @@ public class OrdersController {
        return ordersrepo.findAll();
    }
 
-   @ApiOperation(value = "Customer based off of customer id", response = Orders.class)
+   @ApiOperation(value = "User based off of customer id", response = Orders.class)
    @GetMapping("/{id}")
     public Orders findOrderById(
             @ApiParam(value = "This is the order that you seek", required = true) @PathVariable long id) {

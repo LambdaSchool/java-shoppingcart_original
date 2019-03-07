@@ -1,11 +1,11 @@
 //package com.wandrstick.Service;
 //
-//import com.wandrstick.Model.Customer;
+//import com.wandrstick.Model.User;
 //
 //import java.util.List;
 //
 //public interface UserServiceImpl {
-//    Customer save(Customer customer);
-//    List<Customer> findAll();
+//    User save(User customer);
+//    List<User> findAll();
 //    void delete(long id);
 //}

@@ -1,7 +1,7 @@
 //package com.wandrstick.Service.impl;
 //
 //
-//import com.wandrstick.Model.Customer;
+//import com.wandrstick.Model.User;
 //import com.wandrstick.Repository.CustomerRepository;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.core.userdetails.UserDetails;
@@ -19,15 +19,15 @@
 //    private CustomerRepository userDao;
 //
 //    public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
-//        Customer customer = userDao.findByUsername(userId);
+//        User customer = userDao.findByUsername(userId);
 //        if (customer == null) {
 //            throw new UsernameNotFoundException("Invalid username or password.");
 //        }
 //        return new org.springframework.security.core.userdetails.User(customer.getUsername(), customer.getPassword(), customer.getAuthority());
 //    }
 //
-//    public List<Customer> findAll() {
-//        List<Customer> list = new ArrayList<>();
+//    public List<User> findAll() {
+//        List<User> list = new ArrayList<>();
 //        userDao.findAll().iterator().forEachRemaining(list::add);
 //        return list;
 //    }
@@ -38,7 +38,7 @@
 //    }
 //
 //    @Override
-//    public Customer save(Customer customer)
-//        return userDao.save(Customer);
+//    public User save(User customer)
+//        return userDao.save(User);
 //    }
 //}

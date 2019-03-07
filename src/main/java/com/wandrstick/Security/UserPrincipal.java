@@ -1,6 +1,6 @@
 package com.wandrstick.Security;
 
-import com.wandrstick.Model.Customer;
+import com.wandrstick.Model.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -19,9 +19,7 @@ the UserPrincipal object to perform authentication and authorization.
 public class UserPrincipal implements UserDetails {
     private Long id;
 
-    private String firstName;
-    private String middleName;
-    private String lastName;
+    private String name;
 
     private String username;
 
@@ -33,30 +31,26 @@ public class UserPrincipal implements UserDetails {
 
     private Collection<? extends GrantedAuthority> authorities;
 
-    public UserPrincipal(Long id, String firstName, String middleName, String lastName, String username, String email, String password, Collection<? extends GrantedAuthority> authorities) {
+    public UserPrincipal(Long id, String name, String username, String email, String password, Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
-        this.firstName = firstName;
-        this.middleName = middleName;
-        this.lastName = lastName;
+        this.name = name;
         this.username = username;
         this.email = email;
         this.password = password;
         this.authorities = authorities;
     }
 
-    public static UserPrincipal create(Customer customer) {
-        List<GrantedAuthority> authorities = customer.getRoles().stream().map(role ->
+    public static UserPrincipal create(User user) {
+        List<GrantedAuthority> authorities = user.getRoles().stream().map(role ->
                 new SimpleGrantedAuthority(role.getName().name())
         ).collect(Collectors.toList());
 
         return new UserPrincipal(
-                customer.getCustomer_id(),
-                customer.getFirstName(),
-                customer.getMiddleName(),
-                customer.getLastName(),
-                customer.getUsername(),
-                customer.getEmailAddress(),
-                customer.getPassword(),
+                user.getId(),
+                user.getName(),
+                user.getUsername(),
+                user.getEmail(),
+                user.getPassword(),
                 authorities
         );
     }
@@ -65,16 +59,8 @@ public class UserPrincipal implements UserDetails {
         return id;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getMiddleName() {
-        return middleName;
-    }
-
-    public String getLastName() {
-        return lastName;
+    public String getName() {
+        return name;
     }
 
     public String getEmail() {

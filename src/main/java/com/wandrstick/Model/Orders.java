@@ -1,6 +1,5 @@
 package com.wandrstick.Model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -23,11 +22,11 @@ public class Orders {
     private Set<Products> products;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JsonIgnoreProperties("customers")
+    @JsonIgnoreProperties("users")
     @JoinTable(name = "customer_orders",
             joinColumns = {@JoinColumn(name = "order_id")},
             inverseJoinColumns = {@JoinColumn(name = "customer_id")})
-    private Set<Customer> customers;
+    private Set<User> users;
 
     public Orders() {
     }
@@ -56,11 +55,11 @@ public class Orders {
         this.products = products;
     }
 
-    public Set<Customer> getCustomers() {
-        return customers;
+    public Set<User> getUsers() {
+        return users;
     }
 
-    public void setCustomers(Set<Customer> customers) {
-        this.customers = customers;
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
 }

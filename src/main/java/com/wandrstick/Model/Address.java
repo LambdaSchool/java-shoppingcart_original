@@ -19,8 +19,8 @@ public class Address {
 
     @ManyToOne()
     @JoinColumn(name = "customer_id")
-    @JsonIgnoreProperties("customers")
-    private Customer customer;
+    @JsonIgnoreProperties("users")
+    private User user;
 
 
     public Address() {
@@ -74,11 +74,11 @@ public class Address {
         this.unit_number = unit_number;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public User getUser() {
+        return user;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setUser(User user) {
+        this.user = user;
     }
 }

@@ -19,7 +19,7 @@ Below are the minimum requirements for a success project. This is not meant to b
 * Shopper interface for adding, removing products to their cart. This should not allow ordering more than is in stock.
 * A way to place the order.
 
-* Shopkeeper interface for shopkeeper to add, edit, remove products from the list, view orders from customers, update suppliers
+* Shopkeeper interface for shopkeeper to add, edit, remove products from the list, view orders from users, update suppliers
 
 * Admin interface to update user accounts for the shopkeepers. This system does not need to work with individual user accounts (although that would a great stretch goal).
 
