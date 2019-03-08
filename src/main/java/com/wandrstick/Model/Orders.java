@@ -2,8 +2,12 @@ package com.wandrstick.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.wandrstick.Model.Audit.UserDateAudit;
+import org.hibernate.annotations.BatchSize;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import java.util.Set;
 /* Orders with product and quantity orders, plus shipping addresses, payment details, and shipped status.
  */
@@ -16,6 +20,9 @@ public class Orders extends UserDateAudit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long order_id;
 
+    @NotBlank
+    @Min(1)
+    @Max(50)
     private Long order_quantity;
 
     private boolean pending;
@@ -26,9 +33,9 @@ public class Orders extends UserDateAudit {
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JsonIgnoreProperties("users")
-    @JoinTable(name = "customer_orders",
+    @JoinTable(name = "user_orders",
             joinColumns = {@JoinColumn(name = "order_id")},
-            inverseJoinColumns = {@JoinColumn(name = "customer_id")})
+            inverseJoinColumns = {@JoinColumn(name = "user_id")})
     private Set<User> users;
 
     public Orders() {

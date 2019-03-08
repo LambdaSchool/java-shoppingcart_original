@@ -18,7 +18,7 @@ public class Address {
     private String unit_number;
 
     @ManyToOne()
-    @JoinColumn(name = "customer_id")
+    @JoinColumn(name = "user_id")
     @JsonIgnoreProperties("users")
     private User user;
 

@@ -42,7 +42,6 @@ public class User extends DateAudit {
     private String email;
 
     @NotBlank
-    @Size(max = 100)
     private String password;
 
     @ManyToMany(fetch = FetchType.LAZY)
@@ -55,6 +54,7 @@ public class User extends DateAudit {
     @JsonIgnoreProperties({"users"})
     private Set<Address> addresses = new HashSet<>();
 
+    @Size(max = 100)
 //    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "user")
 //    private Set<PaymentMethods> paymentMethods = new HashSet<>();
 
